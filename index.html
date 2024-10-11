@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Current Time</title>
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .time-container {
+        /* display: flex;
+            justify-content: center;
+            align-items: start; */
+        padding-top: 100px;
+        padding-left: 450px;
+        height: 100vh;
+        font-size: 3rem;
+        font-weight: 500;
+        background-image: url("./bg-image.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 time-container">
+            <h2>Current Time</h2>
+          <div id="current-time">  
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function formatTime(date) {
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        let seconds = date.getSeconds();
+        let ampm = hours >= 12 ? "PM" : "AM";
+
+        hours = hours % 12;
+        hours = hours
+          ? hours
+          : (minutes = minutes < 10 ? "0" + minutes : minutes);
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        let strTime = hours + ":" + minutes + ":" + seconds + " " + ampm;
+        return strTime;
+      }
+
+      function displayCurrentTime() {
+        const now = new Date();
+        const currentTime = formatTime(now);
+        document.getElementById("current-time").innerText = currentTime;
+      }
+      setInterval(displayCurrentTime, 1000);
+      displayCurrentTime();
+    </script>
+  </body>
+</html>
